@@ -1,0 +1,20 @@
+const postcodes = {
+SK1:"Stockport",
+SK2: "Great Moor",
+SK3: "Edgeley",
+SK4: "The Heatons",
+SK5: "Reddish",
+SK6: "Bredbury",
+SK7: "Hazle Grove",
+SK8: "Cheadle",
+SK9: "Wilmslow",
+SK10: "Bollington",
+SK11: "Macclesfield",
+SK12: "Poynton",
+SK13: "Glossop",
+SK14: "Hyde",
+SK15: "Stalybridge",
+SK16: "Duckinfield",
+SK17: "Buxton"
+}
+

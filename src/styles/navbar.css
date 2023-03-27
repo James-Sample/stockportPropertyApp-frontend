@@ -1,0 +1,21 @@
+.Navbar {
+    background-color: rgb(31, 117, 5);
+    border-bottom: 1px solid black;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-links {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    grid-gap: 10px;
+    text-decoration: none;
+}
+
+.navbar-links-item {
+    color: aliceblue;
+    text-decoration: none;
+}

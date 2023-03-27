@@ -1,0 +1,36 @@
+.addproperty {
+    width: 75%;
+    border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  border: 1px solid black;
+  margin: 30px auto auto auto;
+}
+
+.property-form {
+    display: flex;
+    flex-direction: column; 
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+label {
+    margin-right: 4px;
+    font-size: 2em;
+    margin-top: 2px;
+}
+
+input {
+    display: block;
+    height: 50px;
+    font-size: 1em;
+    margin-bottom: 2px;
+}
+
+select {
+    display: inline-block;
+    height: 50px;
+    font-size: 1em;
+    margin-bottom: 2px;
+}
