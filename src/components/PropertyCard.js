@@ -13,7 +13,7 @@ import {
 
 const PropertyCard = ({
   title,
-  city,
+  postcode,
   type,
   bathrooms,
   bedrooms,
@@ -24,7 +24,7 @@ const PropertyCard = ({
     <div className="property-title">{title}</div>
     <div className="property-city">
       <FontAwesomeIcon icon={faCity} className="city-icon" />
-      {city}
+      {postcode}
     </div>
     <div className="property-type">
       <FontAwesomeIcon icon={faHouse} className="type-icon" />
@@ -55,10 +55,10 @@ const PropertyCard = ({
 
 PropertyCard.propTypes = {
   title: PropTypes.string.isRequired,
-  city: PropTypes.string.isRequired,
+  postcode: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  bathrooms: PropTypes.number.isRequired,
-  bedrooms: PropTypes.number.isRequired,
+  bathrooms: PropTypes.string.isRequired,
+  bedrooms: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   email: PropTypes.string.isRequired,
 };

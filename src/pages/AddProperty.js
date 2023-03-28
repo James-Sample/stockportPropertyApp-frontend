@@ -24,11 +24,17 @@ const AddProperty = () => {
 
   const [alert, setAlert] = useState(initialState.alert);
 
+  // const [image, setImage] = useState([]);
+
+  // const imageHandler = (event) => {
+  //   console.log(URL.createObjectURL(event.target.files[0]));
+  //   setImage(URL.createObjectURL(event.target.files[0]));
+  // };
+
   const handleAddproperty = (event) => {
     postData(fields, setAlert);
     event.preventDefault();
     setAlert({ message: "", isSuccess: false });
-    console.log(fields.bedrooms);
   };
 
   const handleFieldChange = (event) => {
@@ -144,7 +150,11 @@ const AddProperty = () => {
             placeholder="e.g. yourname@gmail.com"
           />
         </label>
-        <label htmlFor="image">Image:</label>
+        {/* <label htmlFor="image">
+          Upload a picture:
+          <input type="file" onChange={imageHandler} />
+          <img src={image} alt="none" />
+        </label> */}
         <button className="submit-button" type="submit">
           Add Property
         </button>
