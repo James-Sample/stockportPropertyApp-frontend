@@ -1,0 +1,55 @@
+.property-card {
+    width: 100%;
+    border: 1px dashed black ;
+    border-radius: 10px;
+    padding: 10px;
+    text-transform: uppercase;
+}
+
+.property-title {
+    font-size: large;
+    font-weight: bold;
+    
+}
+
+.beds-baths {
+    display: flex;
+    flex-direction: row;
+    padding: 1px;
+}
+
+.property-bedrooms {
+    padding-right: 4px;
+}
+
+.property-price {
+    margin-bottom: 12px;
+    border-bottom: .25px solid black;
+}
+
+.email-link {
+    background-color: rgb(28, 104, 78);
+    color: rgb(253, 248, 248);
+    width: 95%;
+    padding: 8px;
+    margin-top: 4px;
+border-radius: 10px;
+display: block;
+justify-content: center;
+text-align: center;
+}
+
+
+
+ /*
+.property-city
+.city-icon
+.property-type
+.type-icon
+.property-bathrooms
+.bath-icon
+.property-bedrooms
+.bed-icon
+.property-email 
+.price-icon
+.email-icon */
