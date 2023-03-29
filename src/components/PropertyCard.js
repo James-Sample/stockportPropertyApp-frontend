@@ -19,6 +19,7 @@ const PropertyCard = ({
   bedrooms,
   price,
   email,
+  image,
 }) => (
   <div className="property-card">
     <div className="property-title">{title}</div>
@@ -50,6 +51,9 @@ const PropertyCard = ({
         Contact
       </a>
     </div>
+    <div className="image-container">
+      <img src={image} alt="none" className="image" />
+    </div>
   </div>
 );
 
@@ -61,6 +65,7 @@ PropertyCard.propTypes = {
   bedrooms: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   email: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
 };
 
 export default PropertyCard;

@@ -1,8 +1,9 @@
 import axios from "axios";
 
 const getData = (setProperties, setAlert) => {
+  const { REACT_APP_API_URL } = process.env;
   axios
-    .get("http://localhost:4000/getProperties")
+    .get(`${REACT_APP_API_URL}/getProperties`)
     .then(({ data }) => {
       setProperties(data.propertyData);
     })

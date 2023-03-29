@@ -1,8 +1,9 @@
 import axios from "axios";
 
 const postData = (fields, setAlert) => {
+  const { REACT_APP_API_URL } = process.env;
   axios
-    .post("http://localhost:4000/addProperty", fields)
+    .post(`${REACT_APP_API_URL}/addProperty`, fields)
     .then(() => {
       setAlert({
         message: "Property Added",

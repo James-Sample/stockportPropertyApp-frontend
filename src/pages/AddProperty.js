@@ -2,17 +2,26 @@ import React, { useState } from "react";
 import "../styles/addproperty.css";
 import postData from "../requests/postData";
 import Alert from "../components/Alert";
+import AWS from "aws-sdk";
+const {
+  REACT_APP_DEFAULT_IMAGE,
+  REACT_APP_AWS_S3_ACCESS_KEY_ID,
+  REACT_APP_AWS_S3_SECRET_KEY,
+  REACT_APP_AWS_S3_REGION,
+  REACT_APP_S3_BUCKET_NAME,
+} = process.env;
 
 const AddProperty = () => {
   const initialState = {
     fields: {
       title: "",
-      city: "Manchester",
+      postcode: "SK1",
       type: "Flat",
-      bedrooms: "0",
-      bathrooms: "0",
+      bedrooms: "1",
+      bathrooms: "1",
       price: "",
-      email: "",
+      email: "contact@stockport.com",
+      image: `${REACT_APP_DEFAULT_IMAGE}`,
     },
     alert: {
       message: "",
@@ -23,13 +32,40 @@ const AddProperty = () => {
   const [fields, setFields] = useState(initialState.fields);
 
   const [alert, setAlert] = useState(initialState.alert);
+  // start image code
+  AWS.config.update({
+    accessKeyId: `${REACT_APP_AWS_S3_ACCESS_KEY_ID}`,
+    secretAccessKey: `${REACT_APP_AWS_S3_SECRET_KEY}`,
+    region: `${REACT_APP_AWS_S3_REGION}`,
+    signatureVersion: "v4",
+  });
 
-  // const [image, setImage] = useState([]);
+  const s3 = new AWS.S3();
+  const [imageUrl, setImageUrl] = useState(null);
+  const [file, setFile] = useState(null);
 
-  // const imageHandler = (event) => {
-  //   console.log(URL.createObjectURL(event.target.files[0]));
-  //   setImage(URL.createObjectURL(event.target.files[0]));
-  // };
+  const handleFileSelect = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const uploadToS3 = async (event) => {
+    console.log(`${REACT_APP_AWS_S3_REGION}`);
+    if (!file) {
+      return;
+    }
+    const params = {
+      Bucket: `${REACT_APP_S3_BUCKET_NAME}`,
+      Key: `${Date.now()}.${file.name}`,
+      Body: file,
+    };
+    const { Location } = await s3.upload(params).promise();
+    event.preventDefault();
+    setImageUrl(Location);
+    setFields((prevState) => ({ ...prevState, image: Location }));
+    console.log("uploading to s3", Location);
+  };
+
+  // end image code
 
   const handleAddproperty = (event) => {
     postData(fields, setAlert);
@@ -38,6 +74,7 @@ const AddProperty = () => {
   };
 
   const handleFieldChange = (event) => {
+    event.preventDefault();
     setFields({ ...fields, [event.target.name]: event.target.value });
   };
   return (
@@ -150,11 +187,27 @@ const AddProperty = () => {
             placeholder="e.g. yourname@gmail.com"
           />
         </label>
-        {/* <label htmlFor="image">
+        <label htmlFor="image">
           Upload a picture:
-          <input type="file" onChange={imageHandler} />
-          <img src={image} alt="none" />
-        </label> */}
+          <input
+            id="image"
+            name="image"
+            type="file"
+            onChange={handleFileSelect}
+          />
+          {file && (
+            <div style={{ marginTop: "10px" }}>
+              <button onClick={uploadToS3} type="button">
+                Upload
+              </button>
+            </div>
+          )}
+          {imageUrl && (
+            <div style={{ marginTop: "10px" }}>
+              <img src={imageUrl} alt="uploaded" />
+            </div>
+          )}
+        </label>
         <button className="submit-button" type="submit">
           Add Property
         </button>

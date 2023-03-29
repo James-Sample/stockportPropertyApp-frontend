@@ -1,0 +1,66 @@
+.side-bar {
+    position: relative;
+    float: left;
+    border: 1px solid red;
+    margin-right: 20px;
+    margin-left: -40px;
+    width:108px;
+    overflow:hidden;
+    white-space: nowrap;
+    background-color: grey;
+}
+
+.side-bar:hover {
+    width: 320px;
+    overflow: visible;
+}
+
+ul {
+    list-style: none;
+}
+
+.fa {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 36px;
+    text-align: center;
+    vertical-align: middle;
+    font-size:20px;
+    padding-left: -3px;
+}
+
+.filter-title {
+    position: relative;
+    display: inline-block;
+    font-size: 30px;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+li:hover {
+    color: white;
+}
+
+.filters > li {
+    height: 80px;
+    overflow: hidden;
+}
+
+.city-filter:hover, .sort-price:hover, .search-title:hover {
+    height: 150px;
+    overflow: visible;
+}
+
+.city-links, .price-links, .title-search-form {
+    margin-left: 50px;
+    margin-top: -10px;  
+}
+
+.city-links-item > *, .price-links-item > * {
+    text-decoration: none;
+    color: black;
+}
+.city-links-item > *:hover, .price-links-item > *:hover {
+    color: white;
+} 

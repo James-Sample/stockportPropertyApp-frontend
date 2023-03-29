@@ -1,0 +1,20 @@
+* {
+    box-sizing: border-box;
+}
+
+.properties-page {
+    position: relative;
+    display: block;
+    border: 1px solid black;
+    height: 100%;
+}
+
+.property-cards {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    margin: 30px;
+}
+
+.properties {
+    padding: 10px;
+}
