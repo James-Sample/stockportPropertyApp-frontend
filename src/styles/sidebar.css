@@ -1,19 +1,20 @@
 .side-bar {
-    position: fixed;
+    position: sticky;
     float: left;
     display: block;
     border: 1px solid red;
     margin-right: 20px;
     margin-left: -40px;
     width:108px;
-    overflow:hidden;
+    overflow: hidden;
     white-space: nowrap;
     background-color: grey;
     height: 100vh;
+    top: 0;
 }
 
 .side-bar:hover {
-    width: 320px; 
+    width: 340px; 
     overflow: visible;
 }
 
@@ -25,19 +26,21 @@ ul {
     position: relative;
     display: inline-block;
     width: 60px;
-    height: 36px;
+    height: 32px;
     text-align: center;
     vertical-align: middle;
     font-size:20px;
     padding-left: -3px;
+    padding-top: -10px;
 }
 
 .filter-title {
     position: relative;
     display: inline-block;
-    font-size: 30px;
+    font-size: 25px;
     vertical-align: middle;
     margin-left: 10px;
+    margin-bottom: 30px;
 }
 
 li:hover {
@@ -45,12 +48,12 @@ li:hover {
 }
 
 .filters > li {
-    height: 80px;
+    height: 70px;
     overflow: hidden;
 }
 
 .city-filter:hover, .sort-price:hover, .search-title:hover {
-    height: 150px;
+    height: 200px;
     overflow: visible;
 }
 
@@ -59,10 +62,19 @@ li:hover {
     margin-top: -10px;  
 }
 
-.city-links-item > *, .price-links-item > * {
+.postcode-links-item > *, .price-links-item > * {
     text-decoration: none;
     color: black;
 }
-.city-links-item > *:hover, .price-links-item > *:hover {
+.postcode-links-item > *:hover, .price-links-item > *:hover {
     color: white;
 } 
+
+.postcode-links {
+    column-count: 4; 
+    color: black;
+    margin-bottom: 50px;
+}
+.postcodelinks {
+    color: black;
+}

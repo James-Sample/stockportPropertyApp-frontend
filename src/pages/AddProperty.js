@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "../styles/addproperty.css";
-import Alert from "../components/Alert";
-import AWS from "aws-sdk";
-import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import AWS from "aws-sdk";
+import Alert from "../components/Alert";
 import postData from "../requests/postData";
+import postcodes from "../data/postcode.json";
 import { noTitle, noPrice, uploadedProperty } from "../components/ToastAlerts";
 
 const {
@@ -14,7 +14,6 @@ const {
   REACT_APP_AWS_S3_SECRET_KEY,
   REACT_APP_AWS_S3_REGION,
   REACT_APP_S3_BUCKET_NAME,
-  REACT_APP_API_URL,
 } = process.env;
 
 const AddProperty = () => {
@@ -104,6 +103,7 @@ const AddProperty = () => {
       // setAlert({ message: "", isSuccess: false });
       uploadedProperty();
       setFields(initialState.fields);
+      setImageUrl(null);
     }
   };
 
@@ -134,24 +134,11 @@ const AddProperty = () => {
             value={fields.postcode}
             onChange={handleFieldChange}
           >
-            <option value="SK1">SK1</option>
-            <option value="SK2">SK2</option>
-            <option value="SK3">SK3</option>
-            <option value="SK4">SK4</option>
-            <option value="SK5">SK5</option>
-            <option value="SK6">SK6</option>
-            <option value="SK7">SK7</option>
-            <option value="SK6">SK8</option>
-            <option value="SK9">SK9</option>
-            <option value="SK10">SK10</option>
-            <option value="SK11">SK11</option>
-            <option value="SK12">SK12</option>
-            <option value="SK13">SK13</option>
-            <option value="SK14">SK14</option>
-            <option value="SK15">SK15</option>
-            <option value="SK16">SK16</option>
-            <option value="SK17">SK17</option>
-            <option value="SK18">SK18</option>
+            {postcodes.map((postcode) => (
+              <option key={postcode} value={postcode}>
+                {postcode}
+              </option>
+            ))}
           </select>
         </label>
         <label htmlFor="type">

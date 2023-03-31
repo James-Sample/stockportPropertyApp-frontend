@@ -11,6 +11,7 @@ import {
   // faHouse,
   faCity,
 } from "@fortawesome/free-solid-svg-icons";
+import postcodes from "../data/postcode.json";
 
 const SideBar = () => {
   // for combining queries on the URL
@@ -66,31 +67,19 @@ const SideBar = () => {
         </li>
         <li className="city-filter">
           <FontAwesomeIcon icon={faCity} className="fa city-icon" />
-          <h2 className="filter-title">Filter by city</h2>
-          <ul className="city-links">
-            <li className="city-links-item">
-              <Link to={buildQueryString("query", { city: "Manchester" })}>
-                Manchester
-              </Link>
-            </li>
-            <li className="city-links-item">
-              <Link to={buildQueryString("query", { city: "Leeds" })}>
-                Leeds
-              </Link>
-            </li>
-            <li className="city-links-item">
-              <Link to={buildQueryString("query", { city: "Liverpool" })}>
-                Liverpool
-              </Link>
-            </li>
-            <li className="city-links-item">
-              <Link to={buildQueryString("query", { city: "Sheffield" })}>
-                Sheffield
-              </Link>
-            </li>
+          <h2 className="filter-title">Filter by Postcode</h2>
+          <ul className="postcode-links">
+            {postcodes.map((postcode) => (
+              <li className="postcode-links-item">
+                <Link
+                  to={buildQueryString("query", { postcode: { postcode } })}
+                >
+                  {postcode}
+                </Link>
+              </li>
+            ))}
           </ul>
         </li>
-
         <li className="sort-price">
           <FontAwesomeIcon icon={faSterlingSign} className="fa price-icon" />
           <h2 className="filter-title">Sort By Price</h2>

@@ -18,3 +18,27 @@
 .properties {
     padding: 10px;
 }
+
+@media screen and (max-width: 1600px) {
+    .property-cards {
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+        margin: 30px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .property-cards {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        margin: 30px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .property-cards {
+        display: grid;
+        grid-template-columns: 100%;
+        margin: 30px;
+    }
+}

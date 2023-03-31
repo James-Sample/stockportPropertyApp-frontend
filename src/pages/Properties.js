@@ -46,6 +46,7 @@ const Properties = () => {
       <div className="property-cards">
         <Alert message={alert.message} success={alert.isSuccess} />
         {properties.map((property, i) => (
+          // eslint-disable-next-line react/no-array-index-key
           <div className="properties" key={i}>
             <PropertyCard key={property._id} {...property} />
           </div>
@@ -65,6 +66,7 @@ Properties.propTypes = {
       price: PropTypes.string,
       city: PropTypes.string,
       email: PropTypes.string,
+      // eslint-disable-next-line comma-dangle
     })
   ).isRequired,
 };
