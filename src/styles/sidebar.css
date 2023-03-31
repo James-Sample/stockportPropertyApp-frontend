@@ -1,6 +1,7 @@
 .side-bar {
-    position: relative;
+    position: fixed;
     float: left;
+    display: block;
     border: 1px solid red;
     margin-right: 20px;
     margin-left: -40px;
@@ -8,10 +9,11 @@
     overflow:hidden;
     white-space: nowrap;
     background-color: grey;
+    height: 100vh;
 }
 
 .side-bar:hover {
-    width: 320px;
+    width: 320px; 
     overflow: visible;
 }
 

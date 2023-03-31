@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import "../styles/addproperty.css";
-import postData from "../requests/postData";
 import Alert from "../components/Alert";
 import AWS from "aws-sdk";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import postData from "../requests/postData";
+import { noTitle, noPrice, uploadedProperty } from "../components/ToastAlerts";
+
 const {
   REACT_APP_DEFAULT_IMAGE,
   REACT_APP_AWS_S3_ACCESS_KEY_ID,
   REACT_APP_AWS_S3_SECRET_KEY,
   REACT_APP_AWS_S3_REGION,
   REACT_APP_S3_BUCKET_NAME,
+  REACT_APP_API_URL,
 } = process.env;
 
 const AddProperty = () => {
@@ -49,7 +55,6 @@ const AddProperty = () => {
   };
 
   const uploadToS3 = async (event) => {
-    console.log(`${REACT_APP_AWS_S3_REGION}`);
     if (!file) {
       return;
     }
@@ -65,12 +70,41 @@ const AddProperty = () => {
     console.log("uploading to s3", Location);
   };
 
+  // const uploadToS3 = async (event) => {
+  //   const data = new FormData();
+  //   data.append("file", file, file.name);
+  //   console.log([...data]);
+  //   if (data) {
+  //     axios
+  //       // ({
+  //       //   method: "post",
+  //       //   url: `${REACT_APP_API_URL}/upload`,
+  //       //   body: data,
+  //       // })
+  //       .post(`${REACT_APP_API_URL}/upload`, data)
+  //       // .post("https://httpbin.org/post", data)
+  //       .then((res) => {
+  //         console.log(res);
+  //       })
+  //       .catch((err) => console.log(err));
+  //   }
+  // };
+
   // end image code
 
   const handleAddproperty = (event) => {
-    postData(fields, setAlert);
     event.preventDefault();
-    setAlert({ message: "", isSuccess: false });
+    if (!fields.title) {
+      noTitle();
+    }
+    if (!fields.price) {
+      noPrice();
+    } else {
+      postData(fields, setAlert);
+      // setAlert({ message: "", isSuccess: false });
+      uploadedProperty();
+      setFields(initialState.fields);
+    }
   };
 
   const handleFieldChange = (event) => {
@@ -212,6 +246,7 @@ const AddProperty = () => {
           Add Property
         </button>
       </form>
+      <ToastContainer />
     </div>
   );
 };

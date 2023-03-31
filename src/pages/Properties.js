@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import PropertyCard from "../components/PropertyCard";
 import Alert from "../components/Alert";
 import getData from "../requests/getData";
-// import SideBar from "../components/Sidebar";
+import SideBar from "../components/Sidebar";
 import "../styles/properties.css";
 // import filterPostcode from "../requests/filterPostcode";
 
@@ -41,8 +41,8 @@ const Properties = () => {
 
   return (
     <div className="properties-page">
+      <SideBar />
       <h2>Properties page</h2>
-      {/* <SideBar /> */}
       <div className="property-cards">
         <Alert message={alert.message} success={alert.isSuccess} />
         {properties.map((property, i) => (
