@@ -152,7 +152,7 @@ const AddProperty = () => {
             <option value="Flat">Flat</option>
             <option value="Terraced">Terraced</option>
             <option value="End of Terrace">End of Terrace</option>
-            <option value="Semi-Detached">Semi-Deteched</option>
+            <option value="Semi-Detached">Semi-Detached</option>
             <option value="Detached">Detached</option>
             <option value="Cottage">Cottage</option>
           </select>

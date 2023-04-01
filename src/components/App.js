@@ -6,17 +6,15 @@ import Properties from "../pages/Properties";
 import AddProperty from "../pages/AddProperty";
 import StockportMap from "../pages/StockportMap";
 
-const App = () => {
-  return (
-    <div className="App">
-      <NavBar />
-      <Routes>
-        <Route path="/" element={Properties()} />
-        <Route path="/add-property" element={AddProperty()} />
-        <Route path="/map-page" element={StockportMap()} />
-      </Routes>
-    </div>
-  );
-};
+const App = () => (
+  <div className="App">
+    <NavBar />
+    <Routes>
+      <Route path="/" element={Properties()} />
+      <Route path="/add-property" element={AddProperty()} />
+      <Route path="/map-page" element={StockportMap()} />
+    </Routes>
+  </div>
+);
 
 export default App;

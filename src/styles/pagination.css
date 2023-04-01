@@ -1,0 +1,12 @@
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    size: 1vh;
+}
+
+.page-item {
+    text-decoration: none;
+    margin-left: 2px;
+    margin-right: 2px;
+}

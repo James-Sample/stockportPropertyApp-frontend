@@ -1,4 +1,6 @@
 import React from "react";
+import "../styles/pagination.css";
+import PropTypes from "prop-types";
 
 const Pagination = ({ nPages, currentPage, setCurrentPage }) => {
   // create array to hold all page numbers
@@ -14,34 +16,51 @@ const Pagination = ({ nPages, currentPage, setCurrentPage }) => {
   // create container to diplay page number/controls
   return (
     <nav>
-      <ul className="pagination justify-content-center">
+      <ul className="pagination">
         <li className="page-item">
-          <a className="page-link" onClick={prevPage} href="#">
-            Previous
-          </a>
+          <button
+            type="button"
+            className="page-link"
+            onClick={prevPage}
+            href="#"
+          >
+            &#60;&#60; Previous
+          </button>
         </li>
         {pageNumbers.map((pgNumber) => (
           <li
             key={pgNumber}
             className={`page-item ${currentPage === pgNumber ? "active" : ""}`}
           >
-            <a
+            <button
+              type="button"
               onClick={() => setCurrentPage(pgNumber)}
               className="page-link"
               href="#"
             >
               {pgNumber}
-            </a>
+            </button>
           </li>
         ))}
         <li className="page-item">
-          <a className="page-link" onClick={nextPage} href="#">
-            Next
-          </a>
+          <button
+            type="button"
+            className="page-link"
+            onClick={nextPage}
+            href="#"
+          >
+            Next &#62;&#62;
+          </button>
         </li>
       </ul>
     </nav>
   );
+};
+
+Pagination.propTypes = {
+  nPages: PropTypes.number.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  setCurrentPage: PropTypes.number.isRequired,
 };
 
 export default Pagination;

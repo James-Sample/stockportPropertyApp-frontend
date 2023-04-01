@@ -7,6 +7,7 @@ import Alert from "../components/Alert";
 import getData from "../requests/getData";
 import SideBar from "../components/Sidebar";
 import "../styles/properties.css";
+import Pagination from "../components/Pagination";
 // import filterPostcode from "../requests/filterPostcode";
 
 const Properties = () => {
@@ -39,19 +40,42 @@ const Properties = () => {
   //     });
   // }, [search]);
 
+  // pagination functionality
+  const [currentPage, setCurrentPage] = useState(1);
+  const [propertiesPerPage] = useState(12);
+  const indexOfLastProperty = currentPage * propertiesPerPage;
+  const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
+  // images displayed on page
+  const currentProperties = properties.slice(
+    indexOfFirstProperty,
+    // eslint-disable-next-line comma-dangle
+    indexOfLastProperty
+  );
+  // calculate number of pages
+  const nPages = Math.ceil(properties.length / propertiesPerPage);
+
   return (
     <div className="properties-page">
       <SideBar />
       <h2>Properties page</h2>
       <div className="property-cards">
         <Alert message={alert.message} success={alert.isSuccess} />
-        {properties.map((property, i) => (
+        {currentProperties.map((property, i) => (
           // eslint-disable-next-line react/no-array-index-key
           <div className="properties" key={i}>
             <PropertyCard key={property._id} {...property} />
           </div>
         ))}
       </div>
+      {nPages > 1 ? (
+        <Pagination
+          nPages={nPages}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      ) : (
+        ``
+      )}
     </div>
   );
 };
