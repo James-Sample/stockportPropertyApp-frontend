@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
-// import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
-// import axios from "axios";
 import PropertyCard from "../components/PropertyCard";
 import Alert from "../components/Alert";
 import getData from "../requests/getData";
 import SideBar from "../components/Sidebar";
 import "../styles/properties.css";
 import Pagination from "../components/Pagination";
+import axios from "axios";
 // import filterPostcode from "../requests/filterPostcode";
+// import FilterBar from "../components/FilterBar";
+import PostcodeFilter from "../filters/Postcode";
+import SortFilter from "../filters/Sort";
+import SearchFilter from "../filters/Search";
 
 const Properties = () => {
   const initialState = {
@@ -21,24 +25,44 @@ const Properties = () => {
   const [properties, setProperties] = useState([]);
 
   const [alert, setAlert] = useState(initialState.alert);
-
-  useEffect(() => {
-    getData(setProperties, setAlert);
-  }, []);
-
-  // // for filtering properties by location
   // const { search } = useLocation();
 
   // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:4000/getProperties${search}`)
-  //     .then(({ data }) => {
-  //       setProperties(data.propertyData);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
+  //   getData(setProperties, setAlert);
+  //   console.log(properties);
+  // }, []);
+
+  // for filtering properties by location
+
+  // useEffect(() => {
+  //   filterPostcode(search, setProperties);
   // }, [search]);
+
+  const [obj, setobj] = useState({});
+  const [sort, setSort] = useState({ sort: "price", order: "desc" });
+  const [filterPostcode, setFilterPostcode] = useState([]);
+  const [search, setSearch] = useState("");
+  const base_url = process.env.REACT_APP_API_URL;
+
+  useEffect(() => {
+    const getAllProperties = async () => {
+      try {
+        console.log("im here");
+        const url = `${base_url}/getProperties?sort=${sort.sort},${
+          sort.order
+        }&postcode=${filterPostcode.toString()}&search=${search}`;
+        const { data } = await axios.get(url);
+        setobj(data);
+        setProperties(data.propertyData);
+        console.log(data);
+        console.log(properties);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getAllProperties();
+  }, [sort, filterPostcode, search]);
 
   // pagination functionality
   const [currentPage, setCurrentPage] = useState(1);
@@ -57,6 +81,12 @@ const Properties = () => {
   return (
     <div className="properties-page">
       <SideBar />
+      <PostcodeFilter
+        filterPostcode={filterPostcode}
+        setFilterPostcode={setFilterPostcode}
+      />
+      <SortFilter sort={sort} setSort={setSort} />
+      <SearchFilter setSearch={setSearch} />
       <h2>Properties page</h2>
       <div className="property-cards">
         <Alert message={alert.message} success={alert.isSuccess} />

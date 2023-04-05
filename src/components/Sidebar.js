@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import qs from "qs";
 import "../styles/sidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Slider from "@mui/material/Slider";
 import {
   // faBath,
   // faBed,
@@ -10,8 +11,10 @@ import {
   faMagnifyingGlass,
   // faHouse,
   faCity,
+  faArrowsRotate,
 } from "@fortawesome/free-solid-svg-icons";
 import postcodes from "../data/postcode.json";
+import { TextField } from "@mui/material";
 
 const SideBar = () => {
   // for combining queries on the URL
@@ -40,7 +43,7 @@ const SideBar = () => {
   const handleSearch = (event) => {
     event.preventDefault();
     const newQueryString = buildQueryString("query", {
-      title: { $regex: query },
+      title: { $regex: `${query}` },
     });
     navigate(newQueryString);
   };
@@ -72,7 +75,8 @@ const SideBar = () => {
             {postcodes.map((postcode) => (
               <li className="postcode-links-item">
                 <Link
-                  to={buildQueryString("query", { postcode: { postcode } })}
+                  // to={buildQueryString("query", { postcode: postcode })}
+                  to={`/?query={"postcode": ${postcode}}`}
                 >
                   {postcode}
                 </Link>
@@ -95,6 +99,31 @@ const SideBar = () => {
               </Link>
             </li>
           </ul>
+          <div>
+            <Slider min={0} max={100} />
+          </div>
+          <div>
+            <TextField
+              id="lower"
+              label="Min price"
+              type="number"
+              variant="outlined"
+            />
+          </div>
+          <div>
+            <TextField
+              id="upper"
+              label="Man price"
+              type="number"
+              variant="outlined"
+            />
+          </div>
+        </li>
+        <li className="clear-search">
+          <FontAwesomeIcon icon={faArrowsRotate} className="fa clear-icon" />
+          <Link to="/">
+            <h2 className="filter-title">Clear Search</h2>
+          </Link>
         </li>
       </ul>
     </div>
