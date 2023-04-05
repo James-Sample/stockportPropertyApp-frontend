@@ -1,6 +1,7 @@
 import React from "react";
-import styles from "./styles.module.css";
-import postcodes from "../../data/postcode.json";
+import PropTypes from "prop-types";
+import "../styles/filters/postcode.css";
+import postcodes from "../data/postcode.json";
 
 const PostcodeFilter = ({ filterPostcode, setFilterPostcode }) => {
   const onChange = ({ currentTarget: input }) => {
@@ -14,23 +15,28 @@ const PostcodeFilter = ({ filterPostcode, setFilterPostcode }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.heading}>Filter By Postcode</h1>
-      <div className={styles.postcode_container}>
+    <div className="postcode-container">
+      <h1 className="postcode-heading">Filter By Postcode</h1>
+      <div className="postcode_container">
         {postcodes.map((postcode) => (
-          <div className={styles.postcode} key={postcode}>
+          <div className="postcode" key={postcode}>
             <input
-              className={styles.postcode_input}
+              className="postcode_input"
               type="checkbox"
               value={postcode}
               onChange={onChange}
             />
-            <p className={styles.postcode_label}>{postcode}</p>
+            <p className="postcode_label">{postcode}</p>
           </div>
         ))}
       </div>
     </div>
   );
+};
+
+PostcodeFilter.propTypes = {
+  filterPostcode: PropTypes.string.isRequired,
+  setFilterPostcode: PropTypes.func.isRequired,
 };
 
 export default PostcodeFilter;

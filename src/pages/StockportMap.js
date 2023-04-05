@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/mappage.css";
+import "../styles/pages/mappage.css";
 
 const MapPage = () => (
   <div className="mapcontainer">

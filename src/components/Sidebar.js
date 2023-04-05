@@ -13,8 +13,8 @@ import {
   faCity,
   faArrowsRotate,
 } from "@fortawesome/free-solid-svg-icons";
-import postcodes from "../data/postcode.json";
 import { TextField } from "@mui/material";
+import postcodes from "../data/postcode.json";
 
 const SideBar = () => {
   // for combining queries on the URL

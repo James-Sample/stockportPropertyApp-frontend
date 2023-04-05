@@ -1,5 +1,7 @@
+/* eslint react/prop-types: 0 */
 import React from "react";
-import styles from "./styles.module.css";
+import PropTypes from "prop-types";
+import "../styles/filters/sort.css";
 
 const SortFilter = ({ sort, setSort }) => {
   const onSelectChange = ({ currentTarget: input }) => {
@@ -15,25 +17,27 @@ const SortFilter = ({ sort, setSort }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <p className={styles.sort_by}>Sort By :</p>
+    <div className="sort-container">
+      <h1 className="sort-heading">Sort By:</h1>
       <select
         onChange={onSelectChange}
-        className={styles.select}
+        className="select-box"
         defaultValue={sort.sort}
       >
         <option value="price">Price</option>
+        <option value="bedrooms">Beds</option>
       </select>
-      <button
-        className={styles.arrow_btn}
-        onClick={onArrowChange}
-        type="button"
-      >
-        <p className={styles.up_arrow}>&uarr;</p>
-        <p className={styles.down_arrow}>&darr;</p>
+      <button className="arrow_btn" onClick={onArrowChange} type="button">
+        <p className="up_arrow">&uarr;</p>
+        <p className="down_arrow">&darr;</p>
       </button>
     </div>
   );
+};
+
+SortFilter.propTypes = {
+  sort: PropTypes.number.isRequired,
+  setSort: PropTypes.func.isRequired,
 };
 
 export default SortFilter;

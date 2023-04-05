@@ -1,17 +1,17 @@
-.container {
+.postcode-container {
 	margin: 10px;
 	align-items: flex-start;
-	padding: 10px 20px;
+	padding: 5px 10px;
 	box-shadow: var(--box-shadow);
 	background-color: white;
-	border-radius: 4px;
+	border-radius: 4px; 
 }
 
-.heading {
+.postcode-heading {
 	margin: 0;
 	font-size: 16px;
 	margin: 10px;
-	text-align: center;
+	text-align: left;
 }
 
 .postcode_container {
@@ -22,12 +22,15 @@
 
 .postcode {
 	min-width: 90px;
+	max-width: 200px;
 	display: flex;
+	flex-direction: row;
 	align-items: center;
-	margin: 2px 0;
+	justify-content: left;
+	margin: 1px 0;
 }
 
 .postcode_label {
 	margin: 0;
-	margin-left: 5px;
+	margin-left: 2px;
 }

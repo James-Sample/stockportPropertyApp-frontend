@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/addproperty.css";
+import "../styles/pages/addproperty.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import AWS from "aws-sdk";
