@@ -7,13 +7,19 @@ const NavBar = () => (
     <h1 className="navheader">SK Properties</h1>
     <ul className="navbar-links">
       <li className="navbar-links-item">
-        <Link to="/">View Properties</Link>
+        <Link to="/" className="link">
+          View Properties
+        </Link>
       </li>
       <li className="navbar-links-item">
-        <Link to="add-property">Add a Property</Link>
+        <Link to="add-property" className="link">
+          Add a Property
+        </Link>
       </li>
       <li className="navbar-links-item">
-        <Link to="map-page">Stockport Map</Link>
+        <Link to="map-page" className="link">
+          Stockport Map
+        </Link>
       </li>
     </ul>
   </div>

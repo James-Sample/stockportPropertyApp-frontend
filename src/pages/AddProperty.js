@@ -69,28 +69,6 @@ const AddProperty = () => {
     console.log("uploading to s3", Location);
   };
 
-  // const uploadToS3 = async (event) => {
-  //   const data = new FormData();
-  //   data.append("file", file, file.name);
-  //   console.log([...data]);
-  //   if (data) {
-  //     axios
-  //       // ({
-  //       //   method: "post",
-  //       //   url: `${REACT_APP_API_URL}/upload`,
-  //       //   body: data,
-  //       // })
-  //       .post(`${REACT_APP_API_URL}/upload`, data)
-  //       // .post("https://httpbin.org/post", data)
-  //       .then((res) => {
-  //         console.log(res);
-  //       })
-  //       .catch((err) => console.log(err));
-  //   }
-  // };
-
-  // end image code
-
   const handleAddproperty = (event) => {
     event.preventDefault();
     if (!fields.title) {
@@ -100,7 +78,6 @@ const AddProperty = () => {
       noPrice();
     } else {
       postData(fields, setAlert);
-      // setAlert({ message: "", isSuccess: false });
       uploadedProperty();
       setFields(initialState.fields);
       setImageUrl(null);
@@ -114,124 +91,142 @@ const AddProperty = () => {
   return (
     <div className="addproperty">
       <Alert message={alert.message} success={alert.isSuccess} />
-      <h1>Add Properties</h1>
+      <h1>Add a new Property</h1>
       <form className="property-form" onSubmit={handleAddproperty}>
-        <label htmlFor="title">
-          Title:
-          <input
-            id="title"
-            name="title"
-            value={fields.title}
-            onChange={handleFieldChange}
-            placeholder="3 Bed House in Romiley"
-          />
-        </label>
-        <label htmlFor="postcode">
-          Postcode:
-          <select
-            id="postcode"
-            name="postcode"
-            value={fields.postcode}
-            onChange={handleFieldChange}
-          >
-            {postcodes.map((postcode) => (
-              <option key={postcode} value={postcode}>
-                {postcode}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label htmlFor="type">
-          Type:
-          <select
-            id="type"
-            name="type"
-            value={fields.type}
-            onChange={handleFieldChange}
-          >
-            <option value="Flat">Flat</option>
-            <option value="Terraced">Terraced</option>
-            <option value="End of Terrace">End of Terrace</option>
-            <option value="Semi-Detached">Semi-Detached</option>
-            <option value="Detached">Detached</option>
-            <option value="Cottage">Cottage</option>
-          </select>
-        </label>
-        <label htmlFor="bedrooms">
-          Bedrooms:
-          <select
-            id="bedrooms"
-            name="bedrooms"
-            value={fields.bedrooms}
-            onChange={handleFieldChange}
-          >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7+">7+</option>
-          </select>
-        </label>
-        <label htmlFor="bathrooms">
-          Bathrooms:
-          <select
-            id="bathrooms"
-            name="bathrooms"
-            value={fields.bathrooms}
-            onChange={handleFieldChange}
-          >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4+">4+</option>
-          </select>
-        </label>
-        <label htmlFor="price">
-          Price:
-          <input
-            id="price"
-            name="price"
-            value={fields.price}
-            onChange={handleFieldChange}
-            placeholder="Your most recent valuation..."
-          />
-        </label>
-        <label htmlFor="email">
-          Email:
-          <input
-            id="email"
-            name="email"
-            value={fields.email}
-            onChange={handleFieldChange}
-            placeholder="e.g. yourname@gmail.com"
-          />
-        </label>
-        <label htmlFor="image">
-          Upload a picture:
-          <input
-            id="image"
-            name="image"
-            type="file"
-            onChange={handleFileSelect}
-          />
-          {file && (
-            <div style={{ marginTop: "10px" }}>
-              <button onClick={uploadToS3} type="button">
-                Upload
-              </button>
-            </div>
-          )}
-          {imageUrl && (
-            <div style={{ marginTop: "10px" }}>
-              <img src={imageUrl} alt="uploaded" />
-            </div>
-          )}
-        </label>
-        <button className="submit-button" type="submit">
-          Add Property
-        </button>
+        <div className="form-item">
+          <label htmlFor="title">
+            Title:
+            <input
+              id="title"
+              name="title"
+              value={fields.title}
+              onChange={handleFieldChange}
+              placeholder="3 Bed House in Romiley"
+            />
+          </label>
+        </div>
+        <div className="form-item">
+          <label htmlFor="postcode">
+            Postcode:
+            <select
+              id="postcode"
+              name="postcode"
+              value={fields.postcode}
+              onChange={handleFieldChange}
+            >
+              {postcodes.map((postcode) => (
+                <option key={postcode} value={postcode}>
+                  {postcode}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        <div className="form-item">
+          <label htmlFor="type">
+            Type:
+            <select
+              id="type"
+              name="type"
+              value={fields.type}
+              onChange={handleFieldChange}
+            >
+              <option value="Flat">Flat</option>
+              <option value="Terraced">Terraced</option>
+              <option value="End of Terrace">End of Terrace</option>
+              <option value="Semi-Detached">Semi-Detached</option>
+              <option value="Detached">Detached</option>
+              <option value="Cottage">Cottage</option>
+            </select>
+          </label>
+        </div>
+        <div className="form-item">
+          <label htmlFor="bedrooms">
+            Bedrooms:
+            <select
+              id="bedrooms"
+              name="bedrooms"
+              value={fields.bedrooms}
+              onChange={handleFieldChange}
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7+">7+</option>
+            </select>
+          </label>
+        </div>
+        <div className="form-item">
+          <label htmlFor="bathrooms">
+            Bathrooms:
+            <select
+              id="bathrooms"
+              name="bathrooms"
+              value={fields.bathrooms}
+              onChange={handleFieldChange}
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4+">4+</option>
+            </select>
+          </label>
+        </div>
+        <div className="form-item">
+          <label htmlFor="price">
+            Price:
+            <input
+              id="price"
+              name="price"
+              value={fields.price}
+              onChange={handleFieldChange}
+              placeholder="Your most recent valuation..."
+            />
+          </label>
+        </div>
+        <div className="form-item">
+          <label htmlFor="email">
+            Email:
+            <input
+              id="email"
+              name="email"
+              value={fields.email}
+              onChange={handleFieldChange}
+              placeholder="e.g. yourname@gmail.com"
+            />
+          </label>
+        </div>
+        <div className="form-item">
+          <label htmlFor="image">
+            Upload a picture:
+            <input
+              id="image"
+              name="image"
+              type="file"
+              onChange={handleFileSelect}
+            />
+            {file && (
+              <div style={{ marginTop: "10px" }}>
+                <button onClick={uploadToS3} type="button">
+                  Upload
+                </button>
+              </div>
+            )}
+            {imageUrl && (
+              <div style={{ marginTop: "10px" }}>
+                <img src={imageUrl} alt="uploaded" className="image-thumb" />
+              </div>
+            )}
+          </label>
+        </div>
+        <div className="form-item">
+          <button className="submit-button" type="submit">
+            Add Property
+          </button>
+        </div>
       </form>
       <ToastContainer />
     </div>

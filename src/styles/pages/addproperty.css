@@ -22,7 +22,7 @@ label {
 }
 
 input {
-    display: block;
+    display: inline-block; 
     height: 50px;
     font-size: 1em;
     margin-bottom: 2px;
@@ -33,4 +33,14 @@ select {
     height: 50px;
     font-size: 1em;
     margin-bottom: 2px;
+}
+
+.form-item {
+    margin-top: 10px;
+    size: 50em;
+}
+
+.image-thumb {
+    max-width: 600px;
+    max-height: 600px;
 }

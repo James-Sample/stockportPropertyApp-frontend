@@ -1,10 +1,16 @@
 .mapcontainer {
+    display: flex;
     justify-content: center;
 }
 
 .map {
     height: 100vh;
-    width: 100vh;
+    width: 100%;
     justify-content: center;
+}
+
+iframe {
+    justify-content: center;
+
 }
 
